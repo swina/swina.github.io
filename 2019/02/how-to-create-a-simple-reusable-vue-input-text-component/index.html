@@ -10,12 +10,12 @@
 <meta name="keywords" content="">
 <meta name="description" content="
 
-How to create your configurable Vue component for Input Text">
+Crate your configurable Vue component for Input Text">
 
 
 <meta property="og:description" content="
 
-How to create your configurable Vue component for Input Text">
+Crate your configurable Vue component for Input Text">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to create a simple reusable Vue Input Text component">
 <meta name="twitter:title" content="How to create a simple reusable Vue Input Text component">
@@ -24,10 +24,10 @@ How to create your configurable Vue component for Input Text">
 <meta property="og:site_name" content="Antonio Nardone - Blog">
 <meta property="og:description" content="
 
-How to create your configurable Vue component for Input Text">
+Crate your configurable Vue component for Input Text">
 <meta name="twitter:description" content="
 
-How to create your configurable Vue component for Input Text">
+Crate your configurable Vue component for Input Text">
 <meta property="og:locale" content="en-us">
 
   
@@ -199,7 +199,7 @@ How to create your configurable Vue component for Input Text">
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1359004/swina" target="_blank" rel="noopener">
     
       <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
       
@@ -271,14 +271,15 @@ How to create your configurable Vue component for Input Text">
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
 -->
 
-<p>How to create your configurable Vue component for Input Text</p>
+<p>Crate your configurable Vue component for Input Text</p>
 
-<p>#How to crate a simple reusable Vue Input Text component</p>
+<p>Working on a project I needed an Input text field with:</p>
 
-<p>Working on a project a needed an Input text field with:
-- basic animation for a better visual on focus and blur input state
-- label, hint and icon support
-- color and other configuration available</p>
+<ul>
+<li>basic animation for a better visual on focus and blur input state</li>
+<li>label, hint and icon support</li>
+<li>color and other configuration available</li>
+</ul>
 
 <p>Something to use like :</p>
 
@@ -294,23 +295,59 @@ thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jp
 
 <h4 id="see-a-live-demo-here-https-kwpr9z1qvv-codesandbox-io">See a live demo <a href="https://kwpr9z1qvv.codesandbox.io/">here</a></h4>
 
-<h2 id="component-inputtext">Component InputText</h2>
+<h5 id="data-props-and-computed-properties">Data, props and computed properties</h5>
 
-<p>Here is the component code</p>
+<p>In order to set the component working properly we set</p>
 
-<pre><code>&lt;template&gt;
+<ul>
+<li><code>show</code> as data property (true/false)</li>
+</ul>
+
+<p>the following props:</p>
+
+<ul>
+<li><code>value</code> to manage the user input (required)</li>
+<li><code>placeholder</code> to set the input field placeholder</li>
+<li><code>label</code> to set the field label</li>
+<li><code>hint</code> to set a hint message to visualize when user focus on the input field</li>
+<li><code>icon</code> the icon name</li>
+<li><code>color</code> any css valid color for the label and the field effect</li>
+</ul>
+
+<p>and the computed properties:</p>
+
+<ul>
+<li><code>filled</code> set the class <code>has__content</code> when input field has some value</li>
+<li><code>has__icon</code> set the class <code>input__has__icon</code> if the icon prop is set to a value</li>
+<li><code>focus__border</code> to change the background of the focus__border element (used for the animation) getting the value of the <code>color</code> prop</li>
+</ul>
+
+<h5 id="template">Template</h5>
+
+<pre><code>
+&lt;template&gt;
     &lt;div class=&quot;input__container&quot;&gt;
-      &lt;div :class=&quot;'input-effect ' + filled&quot;&gt;
-        &lt;input :class=&quot;'effect ' + has_icon&quot; type=&quot;text&quot; @focus=&quot;show=!show&quot; :value=&quot;value&quot; @blur=&quot;show=!show&quot; :placeholder=&quot;placeholder&quot; @input=&quot;$emit('input',$event.target.value)&quot;&gt;
+      &lt;div :class=&quot;'input__effect ' + filled&quot;&gt;
+        &lt;input
+    type=&quot;text&quot;
+    :value=&quot;value&quot;
+    :placeholder=&quot;placeholder&quot; @input=&quot;$emit('input',$event.target.value)&quot;
+    :class=&quot;'effect ' + has__icon&quot;
+    @focus=&quot;show=!show&quot;
+    @blur=&quot;show=!show&quot;
+    /&gt;  
         &lt;label :style=&quot;{color:color}&quot;&gt;{{label}}&lt;/label&gt;
-        &lt;span class=&quot;focus-border&quot; :style=&quot;focus_border&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;focus__border&quot; :style=&quot;focus__border&quot;&gt;&lt;/span&gt;
       &lt;/div&gt;
       &lt;span class=&quot;input__hint&quot; v-if=&quot;show&quot;&gt;{{hint}}&lt;/span&gt;
       &lt;i class=&quot;material-icons input__icon&quot;&gt;{{icon}}&lt;/i&gt;
     &lt;/div&gt;
 &lt;/template&gt;
+</code></pre>
 
-&lt;script&gt;
+<h5 id="script">Script</h5>
+
+<pre><code>&lt;script&gt;
 export default{
   data:()=&gt;({
     show: false
@@ -318,17 +355,17 @@ export default{
   computed:{
     filled(){
       if ( !this.show &amp;&amp; this.value ) {
-        return 'has-content'
+        return 'has__content'
       }
       return ''
     },
-    has_icon(){
+    has__icon(){
       if ( this.icon ){
-        return 'input__has_icon'
+        return 'input__has__icon'
       }
       return
     },
-    focus_border(){
+    focus__border(){
       return {
         &quot;background-color&quot; : this.color
       }
@@ -344,8 +381,11 @@ export default{
   },
 }
 &lt;/script&gt;
+</code></pre>
 
-&lt;style scoped&gt;
+<h5 id="css-style-scoped">CSS Style (scoped)</h5>
+
+<pre><code>&lt;style scoped&gt;
 ::placeholder {
   opacity:.4;
 }
@@ -362,7 +402,7 @@ input[type=&quot;text&quot;]{
   width:100%; padding:.5rem .5rem 0 0
 }
 
-.input-effect {
+.input__effect {
   float: left;
   width: 100%;
   margin: 1.5rem 0rem 1.5rem 0;
@@ -383,10 +423,9 @@ input[type=&quot;text&quot;]{
   font-size:.8rem; opacity:.6;
 }
 
-.input__has_icon {
+.input__has__icon {
   padding-left: 2rem!important;
 }
-
 
 .effect {
   border: 0;
@@ -395,7 +434,7 @@ input[type=&quot;text&quot;]{
   background-color: transparent;
 }
 
-.effect ~ .focus-border {
+.effect ~ .focus__border {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -405,8 +444,8 @@ input[type=&quot;text&quot;]{
   transition: 0.4s;
 }
 
-.effect:focus ~ .focus-border ,
-.has-content.effect ~ .focus-border {
+.effect:focus ~ .focus__border ,
+.has-content.effect ~ .focus__border {
   width: 100%;
   transition: 0.4s;
 }
@@ -423,18 +462,16 @@ input[type=&quot;text&quot;]{
 }
 
 .effect:focus ~ label,
-.has-content.effect ~ label {
+.has__content.effect ~ label {
   top: -1rem;
   font-size: 12px;
   color: indigo;
   transition: 0.3s;
 }
-
-
-
-
 &lt;/style&gt;
 </code></pre>
+
+<p>MIT License</p>
               
             </div>
           </div>
@@ -723,7 +760,7 @@ thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jp
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
 -->
 
-<p>How to create your configurable Vue component for Input Text</p></div>
+<p>Crate your configurable Vue component for Input Text</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
