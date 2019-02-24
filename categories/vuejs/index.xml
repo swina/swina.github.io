@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vuejs on Antonio Nardone - Blog</title>
+    <link>https://swina.github.io/categories/vuejs/</link>
+    <description>Recent content in Vuejs on Antonio Nardone - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://swina.github.io/categories/vuejs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build a realtime app with Vue and Feathersjs</title>
+      <link>https://swina.github.io/2019/02/build-a-realtime-app-with-vue-and-feathersjs/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/2019/02/build-a-realtime-app-with-vue-and-feathersjs/</guid>
+      <description>&lt;!--thumbnailImagePosition: left
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
+--&gt;
+
+&lt;p&gt;A very simple and fast way to build a realtime app using Vue and Feathersjs&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to create a simple reusable Vue Input Text component</title>
+      <link>https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/</guid>
+      <description>&lt;!--thumbnailImagePosition: left
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
+--&gt;
+
+&lt;p&gt;How to create your configurable Vue component for Input Text&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

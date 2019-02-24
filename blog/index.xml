@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Antonio Nardone - Blog</title>
+    <link>https://swina.github.io/blog/</link>
+    <description>Recent content in Blogs on Antonio Nardone - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://swina.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://swina.github.io/blog/vuejs/realtime/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/blog/vuejs/realtime/</guid>
+      <description>Realtime app using Vue and Feathersjs A very simple and fast way to build a realtime app using Vue and Feathersjs
+What is feathersjs? Feathersjs is &amp;ldquo;a REST and real-time API layer for Node.js&amp;rdquo; quoting from the intro, with 10,546 stars on Github. Another nodejs framework? Yes.
+Why feathersjs? Because based on the micro-service concept is really fast to learn and understand. Even if you don&amp;rsquo;t know much about nodejs and express it makes things simple.</description>
+    </item>
+    
+  </channel>
+</rss>

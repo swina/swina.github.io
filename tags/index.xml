@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Antonio Nardone - Blog</title>
+    <link>https://swina.github.io/tags/</link>
+    <description>Recent content in Tags on Antonio Nardone - Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://swina.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How To</title>
+      <link>https://swina.github.io/tags/how-to/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/how-to/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Input Text</title>
+      <link>https://swina.github.io/tags/input-text/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/input-text/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nodejs</title>
+      <link>https://swina.github.io/tags/nodejs/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Realtime Api</title>
+      <link>https://swina.github.io/tags/realtime-api/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/realtime-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue Components</title>
+      <link>https://swina.github.io/tags/vue-components/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/vue-components/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vuejs</title>
+      <link>https://swina.github.io/tags/vuejs/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/vuejs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
