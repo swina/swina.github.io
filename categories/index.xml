@@ -20,18 +20,27 @@
     </item>
     
     <item>
-      <title>Feathersjs</title>
-      <link>https://swina.github.io/categories/feathersjs/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Pwa</title>
+      <link>https://swina.github.io/categories/pwa/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://swina.github.io/categories/feathersjs/</guid>
+      <guid>https://swina.github.io/categories/pwa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Service Workers</title>
+      <link>https://swina.github.io/categories/service-workers/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/categories/service-workers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vuejs</title>
       <link>https://swina.github.io/categories/vuejs/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://swina.github.io/categories/vuejs/</guid>
       <description></description>

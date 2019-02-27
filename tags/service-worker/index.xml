@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Antonio Nardone - Blog</title>
-    <link>https://swina.github.io/</link>
-    <description>Recent content on Antonio Nardone - Blog</description>
+    <title>Service Worker on Antonio Nardone - Blog</title>
+    <link>https://swina.github.io/tags/service-worker/</link>
+    <description>Recent content in Service Worker on Antonio Nardone - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Feb 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://swina.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://swina.github.io/tags/service-worker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,19 +22,6 @@ thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jp
 --&gt;
 
 &lt;p&gt;Building a Vue PWA with Web Push Notifications enabled&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>How to create a simple reusable Vue Input Text component</title>
-      <link>https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/</guid>
-      <description>&lt;!--thumbnailImagePosition: left
-thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
---&gt;
-
-&lt;p&gt;Crate your configurable Vue component for Input Text&lt;/p&gt;</description>
     </item>
     
   </channel>

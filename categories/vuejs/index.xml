@@ -6,22 +6,22 @@
     <description>Recent content in Vuejs on Antonio Nardone - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://swina.github.io/categories/vuejs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Build a realtime app with Vue and Feathersjs</title>
-      <link>https://swina.github.io/2019/02/build-a-realtime-app-with-vue-and-feathersjs/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Vue service worker for WebPush Notifications</title>
+      <link>https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://swina.github.io/2019/02/build-a-realtime-app-with-vue-and-feathersjs/</guid>
+      <guid>https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/</guid>
       <description>&lt;!--thumbnailImagePosition: left
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
 --&gt;
 
-&lt;p&gt;A very simple and fast way to build a realtime app using Vue and Feathersjs&lt;/p&gt;</description>
+&lt;p&gt;Building a Vue PWA with Web Push Notifications enabled&lt;/p&gt;</description>
     </item>
     
     <item>

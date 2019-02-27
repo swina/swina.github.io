@@ -10,47 +10,51 @@
 <meta name="keywords" content="">
 <meta name="description" content="
 
-Crate your configurable Vue component for Input Text">
+Building a Vue PWA with Web Push Notifications enabled">
 
 
 <meta property="og:description" content="
 
-Crate your configurable Vue component for Input Text">
+Building a Vue PWA with Web Push Notifications enabled">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to create a simple reusable Vue Input Text component">
-<meta name="twitter:title" content="How to create a simple reusable Vue Input Text component">
-<meta property="og:url" content="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
-<meta property="twitter:url" content="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+<meta property="og:title" content="Vue service worker for WebPush Notifications">
+<meta name="twitter:title" content="Vue service worker for WebPush Notifications">
+<meta property="og:url" content="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
+<meta property="twitter:url" content="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
 <meta property="og:site_name" content="Antonio Nardone - Blog">
 <meta property="og:description" content="
 
-Crate your configurable Vue component for Input Text">
+Building a Vue PWA with Web Push Notifications enabled">
 <meta name="twitter:description" content="
 
-Crate your configurable Vue component for Input Text">
+Building a Vue PWA with Web Push Notifications enabled">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2019-02-24T00:00:00">
+    <meta property="article:published_time" content="2019-02-26T00:00:00">
   
   
-    <meta property="article:modified_time" content="2019-02-24T00:00:00">
+    <meta property="article:modified_time" content="2019-02-26T00:00:00">
   
   
   
     
       <meta property="article:section" content="vuejs">
     
-      <meta property="article:section" content="components">
+      <meta property="article:section" content="pwa">
+    
+      <meta property="article:section" content="service workers">
     
   
   
     
-      <meta property="article:tag" content="vue components">
+      <meta property="article:tag" content="vuejs">
     
-      <meta property="article:tag" content="input text">
+      <meta property="article:tag" content="service worker">
     
-      <meta property="article:tag" content="how to">
+      <meta property="article:tag" content="webpush notifications">
+    
+      <meta property="article:tag" content="vue CLI">
     
   
 
@@ -71,14 +75,14 @@ Crate your configurable Vue component for Input Text">
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=640">
 
 
-    <title>How to create a simple reusable Vue Input Text component</title>
+    <title>Vue service worker for WebPush Notifications</title>
 
     <link rel="icon" href="https://swina.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+    <link rel="canonical" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -238,15 +242,15 @@ Crate your configurable Vue component for Input Text">
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      How to create a simple reusable Vue Input Text component
+      Vue service worker for WebPush Notifications
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-02-24T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-02-26T00:00:00Z">
         
-  February 24, 2019
+  February 26, 2019
 
       </time>
     
@@ -257,7 +261,9 @@ Crate your configurable Vue component for Input Text">
     
       <a class="category-link" href="https://swina.github.io/categories/vuejs">vuejs</a>, 
     
-      <a class="category-link" href="https://swina.github.io/categories/components">components</a>
+      <a class="category-link" href="https://swina.github.io/categories/pwa">pwa</a>, 
+    
+      <a class="category-link" href="https://swina.github.io/categories/service-workers">service workers</a>
     
   
 
@@ -271,207 +277,159 @@ Crate your configurable Vue component for Input Text">
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
 -->
 
-<p>Crate your configurable Vue component for Input Text</p>
+<p>Building a Vue PWA with Web Push Notifications enabled</p>
 
-<p>Working on a project I needed an Input text field with:</p>
+<h2 id="web-push-notifications-service-workers">Web Push Notifications &amp; Service Workers</h2>
 
-<ul>
-<li>basic animation for a better visual on focus and blur input state</li>
-<li>label, hint and icon support</li>
-<li>color and other configuration available</li>
-</ul>
+<p><em>Web Push Notifications</em></p>
 
-<p>Something to use like :</p>
+<p>Web Push Notifications are one of the most important feature for a PWA in order to be compared with native apps. User will get notification even if your app is not opened in the browser.
+If you want to learn more about them or you don&rsquo;t know much about the Web Push Notifications you can find more info <a href="https://developers.google.com/web/fundamentals/push-notifications/">here</a></p>
 
-<pre><code>&lt;input-text
-  v-model=&quot;firstname&quot;
-  placeholder=&quot;please input your firstname&quot;
-  label=&quot;Firstname&quot;
-  icon=&quot;persone&quot;
-  hint=&quot;input your firstname&quot;
-  color=&quot;#2196F3&quot;
-  /&gt;
-</code></pre>
+<p><em>Service Workers</em></p>
 
-<h4 id="see-a-live-demo-here-https-kwpr9z1qvv-codesandbox-io">See a live demo <a href="https://kwpr9z1qvv.codesandbox.io/">here</a></h4>
+<p>In order to work, Web Push Notifications need a service worker, basically a javascript process that runs indipendently from your app.
+To learn more about service workers
+I suggest you to read the documentation in order to understand better what I will present below.
+More info and some good example <a href="https://serviceworke.rs/">here</a></p>
 
-<h5 id="data-props-and-computed-properties">Data, props and computed properties</h5>
+<h2 id="pwa-service-worker-in-vue">PWA Service Worker in Vue</h2>
 
-<p>In order to set the component working properly we set</p>
+<h4 id="default-service-workers">Default service workers</h4>
 
-<ul>
-<li><code>show</code> as data property (true/false)</li>
-</ul>
+<p>Using Vue CLI with the PWA template you will get a service worker automatically created, registered and working (production env).
+The standard service worker is created by the build process by registerServiceWorker.js :</p>
 
-<p>the following props:</p>
+<pre><code>/* eslint-disable no-console */
+import { register } from 'register-service-worker'
 
-<ul>
-<li><code>value</code> to manage the user input (required)</li>
-<li><code>placeholder</code> to set the input field placeholder</li>
-<li><code>label</code> to set the field label</li>
-<li><code>hint</code> to set a hint message to visualize when user focus on the input field</li>
-<li><code>icon</code> the icon name</li>
-<li><code>color</code> any css valid color for the label and the field effect</li>
-</ul>
-
-<p>and the computed properties:</p>
-
-<ul>
-<li><code>filled</code> set the class <code>has__content</code> when input field has some value</li>
-<li><code>has__icon</code> set the class <code>input__has__icon</code> if the icon prop is set to a value</li>
-<li><code>focus__border</code> to change the background of the focus__border element (used for the animation) getting the value of the <code>color</code> prop</li>
-</ul>
-
-<h5 id="template">Template</h5>
-
-<pre><code>
-&lt;template&gt;
-    &lt;div class=&quot;input__container&quot;&gt;
-      &lt;div :class=&quot;'input__effect ' + filled&quot;&gt;
-        &lt;input
-    type=&quot;text&quot;
-    :value=&quot;value&quot;
-    :placeholder=&quot;placeholder&quot; @input=&quot;$emit('input',$event.target.value)&quot;
-    :class=&quot;'effect ' + has__icon&quot;
-    @focus=&quot;show=!show&quot;
-    @blur=&quot;show=!show&quot;
-    /&gt;  
-        &lt;label :style=&quot;{color:color}&quot;&gt;{{label}}&lt;/label&gt;
-        &lt;span class=&quot;focus__border&quot; :style=&quot;focus__border&quot;&gt;&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;span class=&quot;input__hint&quot; v-if=&quot;show&quot;&gt;{{hint}}&lt;/span&gt;
-      &lt;i class=&quot;material-icons input__icon&quot;&gt;{{icon}}&lt;/i&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-</code></pre>
-
-<h5 id="script">Script</h5>
-
-<pre><code>&lt;script&gt;
-export default{
-  data:()=&gt;({
-    show: false
-  }),
-  computed:{
-    filled(){
-      if ( !this.show &amp;&amp; this.value ) {
-        return 'has__content'
-      }
-      return ''
+if (process.env.NODE_ENV === 'production') {
+  register(`${process.env.BASE_URL}service-worker.js`, {
+    ready () {
+      console.log(
+        'App is being served from cache by a service worker.\n' +
+        'For more details, visit https://goo.gl/AFskqB'
+      )
     },
-    has__icon(){
-      if ( this.icon ){
-        return 'input__has__icon'
-      }
-      return
+    registered () {
+      console.log('Service worker has been registered.')
     },
-    focus__border(){
-      return {
-        &quot;background-color&quot; : this.color
-      }
+    cached () {
+      console.log('Content has been cached for offline use.')
+    },
+    updatefound () {
+      console.log('New content is downloading.')
+    },
+    updated () {
+      console.log('New content is available; please refresh.')
+    },
+    offline () {
+      console.log('No internet connection found. App is running in offline mode.')
+    },
+    error (error) {
+      console.error('Error during service worker registration:', error)
     }
-  },
-  props: {
-    value : { type: String , required: false, default: ''},
-    label: { type: String , required: false, default: ''},
-    hint: { type: String, required:false , default:'hint'},
-    icon: { type: String, required: false , default: '' },
-    placeholder: { type: String, required: false, default: ''},
-    color: { type: String , required: false , default: 'indigo' }
-  },
+  })
 }
-&lt;/script&gt;
 </code></pre>
 
-<h5 id="css-style-scoped">CSS Style (scoped)</h5>
+<p><em>src/registerServiceWorker.js</em></p>
 
-<pre><code>&lt;style scoped&gt;
-::placeholder {
-  opacity:.4;
-}
+<p>The result after the build will be <code>service-worker.js</code> in the root of the dist folder</p>
 
-input[type=&quot;text&quot;]{
-  color: #555;
-  width: 100%;
-  box-sizing: border-box;
-  letter-spacing: 1px;
-  outline:none;
-}
+<pre><code>/**
+* Welcome to your Workbox-powered service worker!
+*
+* You'll need to register this file in your web app and you should
+* disable HTTP caching for this file too.
+* See https://goo.gl/nhQhGp
+*
+* The rest of the code is auto-generated. Please don't update this file
+* directly; instead, make changes to your Workbox build configuration
+* and re-run your build process.
+* See https://goo.gl/2aRDsh
+*/
 
-.input__container {
-  width:100%; padding:.5rem .5rem 0 0
-}
+importScripts(&quot;https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js&quot;);
 
-.input__effect {
-  float: left;
-  width: 100%;
-  margin: 1.5rem 0rem 1.5rem 0;
-  position: relative;
-} /* necessary to give position: relative to parent. */
+importScripts(
+&quot;precache-manifest.c9d50e7b61e4d64b7ee75abc3a4955c0.js&quot;
+);
 
-.input__icon {
-  position: relative;
-  left: 0rem;
-  top: -3.5rem;
-  opacity:.3;
-}
-.input__hint {
-  float: left;
-  width: 100%;
-  margin:-1.2rem 0 0 0;
-  position: relative;
-  font-size:.8rem; opacity:.6;
-}
+workbox.core.setCacheNameDetails({prefix: &quot;myappname&quot;});
 
-.input__has__icon {
-  padding-left: 2rem!important;
-}
-
-.effect {
-  border: 0;
-  padding: 4px 0;
-  border-bottom: 1px solid #ccc;
-  background-color: transparent;
-}
-
-.effect ~ .focus__border {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: indigo;
-  transition: 0.4s;
-}
-
-.effect:focus ~ .focus__border ,
-.has-content.effect ~ .focus__border {
-  width: 100%;
-  transition: 0.4s;
-}
-
-.effect ~ label {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  top: -1.3rem;
-  color: #aaa;
-  transition: 0.3s;
-  z-index: -1;
-  letter-spacing: 0.5px;
-}
-
-.effect:focus ~ label,
-.has__content.effect ~ label {
-  top: -1rem;
-  font-size: 12px;
-  color: indigo;
-  transition: 0.3s;
-}
-&lt;/style&gt;
+/**
+* The workboxSW.precacheAndRoute() method efficiently caches and responds to
+* requests for URLs in the manifest.
+* See https://goo.gl/S9QRab
+*/
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 </code></pre>
 
-<p>MIT License</p>
+<p>The auto-generated service worker is a standard template built loading a Workbox CDN and it&rsquo;s a basic caching system of the js files.</p>
+
+<p>So what about I want setup my service worker to enable WebPush notifications?</p>
+
+<p>The only way to get them working is to create a custom service worker.</p>
+
+<h3 id="custom-service-worker">Custom service worker</h3>
+
+<p>The best solution to me in order to create a custom service worker that works with the Web Push Notifications was to change the auto-generated service worker.</p>
+
+<p>How to do that? The process is quite simple:</p>
+
+<ol>
+<li>change or create a <code>vue.config.js</code> in the root of your app (not the src folder) adding the following</li>
+</ol>
+
+<pre><code>module.exports = {
+  pwa: {
+    workboxPluginMode: &quot;InjectManifest&quot;,
+    workboxOptions: {
+      swSrc: &quot;src/service-worker.js&quot;,
+    }
+  }
+}
+</code></pre>
+
+<p><em>vue.config.js</em></p>
+
+<p>This tell to the Vue build process to inject the service worker source from  <code>src/service-worker.js</code> that you have to create.</p>
+
+<ol>
+<li>create an empty js file <code>src/service-worker.js</code> and add</li>
+</ol>
+
+<pre><code>self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+//push notifications event listener
+self.addEventListener('push', function(event) {
+  let push_message = event.data.json()
+  console.log('[Service Worker] Push Received.');
+  // push notification can send event.data.json() as well
+  console.log(`[Service Worker] Push had this data: &quot;${event.data.text()}&quot;`);
+  const options = {
+    body: push_message.notification.body,
+    tag: 'alert'
+  };
+  event.waitUntil(self.registration.showNotification(push_message.notification.title, options));
+});
+</code></pre>
+
+<p>Basically we keep the standard auto-generated service-worker adding our push notification event listener.
+In this way you enable your PWA to get Web Push Notifications.</p>
+
+<p>How to test it? In order to test you need to build your app, and a Web Push Notifications service (Firebase, Google Cloud Messaging, ecc.) or you can create your own.</p>
+
+<p>Important: <em>push notifications need subscription by the user.</em></p>
+
+<p>In the next article I will show how to integrate a Vue project with a subscription system based on service worker and a fast and easy way to create your own Web Push Notification server.</p>
+
+<p>See you soon!</p>
               
             </div>
           </div>
@@ -483,11 +441,13 @@ input[type=&quot;text&quot;]{
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/vue-components/">vue components</a>
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/vuejs/">vuejs</a>
 
-  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/input-text/">input text</a>
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/service-worker/">service worker</a>
 
-  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/how-to/">how to</a>
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/webpush-notifications/">webpush notifications</a>
+
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/vue-cli/">vue CLI</a>
 
                   </div>
                 
@@ -500,7 +460,7 @@ input[type=&quot;text&quot;]{
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/" data-tooltip="Vue service worker for WebPush Notifications">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -508,7 +468,7 @@ input[type=&quot;text&quot;]{
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/" data-tooltip="How to create a simple reusable Vue Input Text component">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -526,19 +486,19 @@ input[type=&quot;text&quot;]{
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -576,7 +536,7 @@ input[type=&quot;text&quot;]{
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/" data-tooltip="Vue service worker for WebPush Notifications">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -584,7 +544,7 @@ input[type=&quot;text&quot;]{
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/" data-tooltip="How to create a simple reusable Vue Input Text component">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -602,19 +562,19 @@ input[type=&quot;text&quot;]{
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -638,19 +598,19 @@ input[type=&quot;text&quot;]{
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fhow-to-create-a-simple-reusable-vue-input-text-component%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fvue-service-worker-for-webpush-notifications%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fhow-to-create-a-simple-reusable-vue-input-text-component%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fvue-service-worker-for-webpush-notifications%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fhow-to-create-a-simple-reusable-vue-input-text-component%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fvue-service-worker-for-webpush-notifications%2F">
           <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
         </a>
       </li>

@@ -3,8 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://swina.github.io/2019/02/build-a-realtime-app-with-vue-and-feathersjs/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <loc>https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -14,20 +14,11 @@
   
   <url>
     <loc>https://swina.github.io/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://swina.github.io/blog/vuejs/realtime/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://swina.github.io/archives/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://swina.github.io/blog/</loc>
     <priority>0</priority>
   </url>
   
@@ -38,12 +29,6 @@
   
   <url>
     <loc>https://swina.github.io/categories/components/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://swina.github.io/categories/feathersjs/</loc>
     <lastmod>2019-02-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -61,20 +46,26 @@
   </url>
   
   <url>
-    <loc>https://swina.github.io/tags/nodejs/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://swina.github.io/post/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://swina.github.io/tags/realtime-api/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <loc>https://swina.github.io/categories/pwa/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://swina.github.io/tags/service-worker/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://swina.github.io/categories/service-workers/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -85,20 +76,32 @@
   </url>
   
   <url>
+    <loc>https://swina.github.io/tags/vue-cli/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://swina.github.io/tags/vue-components/</loc>
     <lastmod>2019-02-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://swina.github.io/categories/vuejs/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <loc>https://swina.github.io/tags/vuejs/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://swina.github.io/tags/vuejs/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <loc>https://swina.github.io/categories/vuejs/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://swina.github.io/tags/webpush-notifications/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
