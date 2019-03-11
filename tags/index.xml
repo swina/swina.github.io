@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Antonio Nardone - Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://swina.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Feathersjs</title>
+      <link>https://swina.github.io/tags/feathersjs/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/feathersjs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>How To</title>
@@ -30,11 +39,29 @@
     </item>
     
     <item>
+      <title>Nodejs</title>
+      <link>https://swina.github.io/tags/nodejs/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Service Worker</title>
       <link>https://swina.github.io/tags/service-worker/</link>
       <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://swina.github.io/tags/service-worker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vapid</title>
+      <link>https://swina.github.io/tags/vapid/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://swina.github.io/tags/vapid/</guid>
       <description></description>
     </item>
     
@@ -68,7 +95,7 @@
     <item>
       <title>Webpush Notifications</title>
       <link>https://swina.github.io/tags/webpush-notifications/</link>
-      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://swina.github.io/tags/webpush-notifications/</guid>
       <description></description>

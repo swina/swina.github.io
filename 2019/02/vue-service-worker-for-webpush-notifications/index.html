@@ -406,17 +406,28 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-//push notifications event listener
+//Web Push Notifications//
+let click_open_url
 self.addEventListener('push', function(event) {
   let push_message = event.data.json()
-  console.log('[Service Worker] Push Received.');
   // push notification can send event.data.json() as well
-  console.log(`[Service Worker] Push had this data: &quot;${event.data.text()}&quot;`);
+  click_open_url = push_message.notification.data.url
   const options = {
     body: push_message.notification.body,
+    icon: push_message.notification.icon,
+    image: push_message.notification.image,
     tag: 'alert'
   };
   event.waitUntil(self.registration.showNotification(push_message.notification.title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  const clickedNotification = event.notification;
+  clickedNotification.close();
+  if ( click_open_url ){
+    const promiseChain = clients.openWindow(click_open_url);
+    event.waitUntil(promiseChain);
+  }
 });
 </code></pre>
 
@@ -427,7 +438,9 @@ In this way you enable your PWA to get Web Push Notifications.</p>
 
 <p>Important: <em>push notifications need subscription by the user.</em></p>
 
-<p>In the next article I will show how to integrate a Vue project with a subscription system based on service worker and a fast and easy way to create your own Web Push Notification server.</p>
+<h3 id="create-a-vapid-web-push-notification-service">Create a VAPID Web Push Notification Service</h3>
+
+<p><a href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">Click here to learn how to create a VAPID Web Push Notification service</a></p>
 
 <p>See you soon!</p>
               
@@ -460,7 +473,7 @@ In this way you enable your PWA to get Web Push Notifications.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/" data-tooltip="WebPush Notifications with Feathersjs">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -536,7 +549,7 @@ In this way you enable your PWA to get Web Push Notifications.</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/" data-tooltip="WebPush Notifications with Feathersjs">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -671,6 +684,23 @@ In this way you enable your PWA to get Web Push Notifications.</p>
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+                <h3 class="media-heading">WebPush Notifications with Feathersjs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Create your own VAPID Web Push Notifications server.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
                 <h3 class="media-heading">Vue service worker for WebPush Notifications</h3>
               </a>
@@ -717,7 +747,7 @@ thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jp
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         2 posts found
+         3 posts found
       </p>
     </div>
   </div>

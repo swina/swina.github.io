@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/</loc>
     <lastmod>2019-02-26T00:00:00+00:00</lastmod>
   </url>
@@ -14,7 +19,7 @@
   
   <url>
     <loc>https://swina.github.io/</loc>
-    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -34,6 +39,18 @@
   </url>
   
   <url>
+    <loc>https://swina.github.io/tags/feathersjs/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://swina.github.io/categories/feathersjs/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://swina.github.io/tags/how-to/</loc>
     <lastmod>2019-02-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -46,8 +63,14 @@
   </url>
   
   <url>
+    <loc>https://swina.github.io/tags/nodejs/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://swina.github.io/post/</loc>
-    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -71,7 +94,13 @@
   
   <url>
     <loc>https://swina.github.io/tags/</loc>
-    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://swina.github.io/tags/vapid/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -100,8 +129,14 @@
   </url>
   
   <url>
+    <loc>https://swina.github.io/categories/web-push/</loc>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://swina.github.io/tags/webpush-notifications/</loc>
-    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

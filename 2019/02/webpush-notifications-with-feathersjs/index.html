@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Antonio Nardone">
+<meta name="keywords" content="">
+<meta name="description" content="Create your own VAPID Web Push Notifications server.">
+
+
+<meta property="og:description" content="Create your own VAPID Web Push Notifications server.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebPush Notifications with Feathersjs">
+<meta name="twitter:title" content="WebPush Notifications with Feathersjs">
+<meta property="og:url" content="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+<meta property="twitter:url" content="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+<meta property="og:site_name" content="Antonio Nardone - Blog">
+<meta property="og:description" content="Create your own VAPID Web Push Notifications server.">
+<meta name="twitter:description" content="Create your own VAPID Web Push Notifications server.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-02-27T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-02-27T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="feathersjs">
+    
+      <meta property="article:section" content="web-push">
+    
+  
+  
+    
+      <meta property="article:tag" content="feathersjs">
+    
+      <meta property="article:tag" content="nodejs">
+    
+      <meta property="article:tag" content="webpush notifications">
+    
+      <meta property="article:tag" content="vapid">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=640">
+
+
+    <title>WebPush Notifications with Feathersjs</title>
+
+    <link rel="icon" href="https://swina.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://swina.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://swina.github.io/">Antonio Nardone - Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://swina.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://swina.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Antonio Nardone</h4>
+        
+          <h5 class="sidebar-profile-bio">Web Specialist</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/swina" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/1359004/swina" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://swina.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      WebPush Notifications with Feathersjs
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-02-27T00:00:00Z">
+        
+  February 27, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://swina.github.io/categories/feathersjs">feathersjs</a>, 
+    
+      <a class="category-link" href="https://swina.github.io/categories/web-push">web-push</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Create your own VAPID Web Push Notifications server.</p>
+
+<p>Web Push Notifications allow to send desktop notifications for a PWA or a Web Application as a useful and powerful tool to engage your audience.
+This is a little example how I created my own Web Push Notification service.</p>
+
+<p>Since I think that PWA and WebApps still missing some features from native apps, WebPush Notifications can help to close the gap.</p>
+
+<p>Web Push Notifications require 2 technologies:</p>
+
+<ol>
+<li>a <strong>push</strong> server (VAPID) that sends notifications</li>
+<li>a <strong>service worker</strong>  on the client that shows the notifications</li>
+</ol>
+
+<p>In order to implement a complete solution you need to know or learn both of them. In this article I will show how to implement a basic Web Push Notifications service using Feathersjs.</p>
+
+<p>If you don&rsquo;t know about Feathersjs, it&rsquo;s a realtime API and REST api framework based on Nodejs/express. You can find all info <a href="https://docs.feathersjs.com/">here</a></p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li>nodejs</li>
+<li>npm</li>
+<li>feathersjs</li>
+<li>web-push (via npm)</li>
+</ul>
+
+<h3 id="application-features-basic">Application features (basic)</h3>
+
+<p>Our app will be a basic app in order to manage:</p>
+
+<ul>
+<li><strong>authentication</strong> in order to secure our services</li>
+<li><strong>users</strong> that can send push notifications</li>
+<li><strong>notifications</strong> a collection of our notification messages</li>
+<li><strong>subscriptions</strong> the subscribers at our push notification service</li>
+<li><strong>push notifications</strong> (WebPush)</li>
+</ul>
+
+<p><strong>If you don&rsquo;t have feathersjs installed</strong></p>
+
+<pre><code>$ npm install @feathersjs/feathers --save
+</code></pre>
+
+<p>Install the CLI (the generator)</p>
+
+<pre><code>$ npm install @feathersjs/cli -g
+</code></pre>
+
+<h2 id="create-a-new-app">Create a new app</h2>
+
+<p>First create a new folder for your app.</p>
+
+<pre><code>$ mkdir webpush
+$ cd webpush
+</code></pre>
+
+<p>Using feathersjs CLI create a new app</p>
+
+<pre><code>$ feathers generate app
+</code></pre>
+
+<h3 id="app-setup-configuration">App Setup &amp; Configuration</h3>
+
+<p><strong>VAPID KEYS</strong></p>
+
+<p>In order to trigger push messages from your server you need to add to your app the <code>web-push</code> library.</p>
+
+<pre><code>$ npm install web-push -g
+</code></pre>
+
+<p>I suggest to install globally so you can use and test web push notifications from the command line, but most important for this example we will use to generate the <strong>vapid keys</strong></p>
+
+<pre><code>$ web-push generate-vapid-keys --json
+</code></pre>
+
+<p>You will get a JSON object as</p>
+
+<pre><code>{
+    &quot;public&quot;: &quot;BMIMGCxKLrSXKXaK1rxzU8Cy4NSkvw8k9XDM9lfxXPA16hDpvAMYj0bS....&quot;,
+    &quot;private&quot;: &quot;...JRhFn47GWl4HDFkaUg6UK7GB.....&quot;,
+}
+</code></pre>
+
+<p>Save them in a safe place and never release the private key.</p>
+
+<h4 id="configuration-settings">Configuration settings</h4>
+
+<p>Open now from the root of your project the file <code>config/default.json</code></p>
+
+<p>This file has the global configuration parameters used by the app.
+Here you can change the port, DB access parameters, public folder, pagination, etc.</p>
+
+<p>You can add you settings in order to get them available globally</p>
+
+<p>Your config file should look something like this</p>
+
+<pre><code>{
+  &quot;host&quot;: &quot;localhost&quot;,
+  &quot;port&quot;: 3030,
+  &quot;public&quot;: &quot;../public/&quot;,
+  &quot;paginate&quot;: {
+    &quot;default&quot;: 10,
+    &quot;max&quot;: 50
+  },
+  &quot;nedb&quot;: &quot;../data&quot;,
+  ...
+</code></pre>
+
+<p>Add now the vapid keys generated before.</p>
+
+<pre><code>&quot;vapid&quot; : {
+  &quot;public&quot; : &quot;BMIMGCxKLrSXKXaK1rxzU8Cy4NSkvw8k9XDM9lfxXPA16hDpvAMYj0bS....&quot;,
+  &quot;private&quot; : &quot;...JRhFn47GWl4HDFkaUg6UK7GB.....&quot;,
+  &quot;subject&quot; : &quot;mailto:a_valid_email_address&quot;
+}
+</code></pre>
+
+<p>We added the <code>subject</code> parameter that is required by the standard application of a VAPID server.</p>
+
+<h2 id="authentication-service">Authentication service</h2>
+
+<p>In order to protect you app we will add an authentication system.</p>
+
+<pre><code>$ feathers generate authentication
+</code></pre>
+
+<p>Generating an authentication system you will asked which service will be used to manage the users (default will be /users) and which provider/strategy you plan to deploy for you app. You have the following options (you can select all)</p>
+
+<ul>
+<li>local (JWT Token)</li>
+<li>Auth0</li>
+<li>Google</li>
+<li>Facebook</li>
+<li>Github</li>
+</ul>
+
+<p>The generator will ask you which endpoint you want to generate in order to manage users for authentication. Leave the default value suggested by the generator.
+For the DB in order to make this simple demo we will use as database NeDB, but you can set your own adapter since Feathersjs can manage different <a href="https://docs.feathersjs.com/api/databases/adapters.html">database adapters</a></p>
+
+<p>Try to run your app in order to check that everything is ok. I am using nodemon in order to restart the server on every change applied to our app.</p>
+
+<pre><code>$ nodemon src/index.js
+</code></pre>
+
+<p>You should get in the console window</p>
+
+<pre><code>info: Feathers application started on http://localhost:3030
+</code></pre>
+
+<p>You can now click Ctrl+C to get back to the console. We will add the services that we need for our demo app.</p>
+
+<h2 id="notifications-service">Notifications Service</h2>
+
+<p>endpoint : <code>http://localhost:3030/notifications</code></p>
+
+<p>We will create a database of notifications to send to the users. In this way we can reuse them for different sending without the need to write a new one everytime.
+We need to create a service. From the console</p>
+
+<pre><code>$ feathers generate service
+
+? What kind of service is it? (Use arrow keys)
+  A custom service
+  In Memory
+&gt; NeDB
+  MongoDB
+  Mongoose
+  Sequelize
+  KnexJS
+(Move up and down to reveal more choices)
+
+? What kind of service is it? NeDB
+? What is the name of the service? notifications
+? Which path should the service be registered on? (/notifications)
+? Does the service require authentication? (y/N) Y
+</code></pre>
+
+<p>Our service to manage <strong>notifications</strong> is ready. Restart the server <code>nodemon src/index.js</code> to control that there are no errors.</p>
+
+<p>The Web Push Notification API, that we will use to send the notification is very simple.</p>
+
+<pre><code>showNotification(title,options)
+</code></pre>
+
+<p>Where <code>title</code> is the message title and <code>options</code> can be any of the following</p>
+
+<pre><code>{
+  &quot;body&quot;: &quot;&lt;String&gt;&quot;,
+  &quot;icon&quot;: &quot;&lt;URL String&gt;&quot;,
+  &quot;image&quot;: &quot;&lt;URL String&gt;&quot;,
+  &quot;badge&quot;: &quot;&lt;URL String&gt;&quot;,
+  &quot;vibrate&quot;: &quot;&lt;Array of Integers&gt;&quot;,
+  &quot;sound&quot;: &quot;&lt;URL String&gt;&quot;,
+  &quot;dir&quot;: &quot;&lt;String of 'auto' | 'ltr' | 'rtl'&gt;&quot;,
+  &quot;//&quot;: &quot;Behavioural Options&quot;,
+  &quot;tag&quot;: &quot;&lt;String&gt;&quot;,
+  &quot;data&quot;: &quot;&lt;Anything&gt;&quot;,
+  &quot;requireInteraction&quot;: &quot;&lt;boolean&gt;&quot;,
+  &quot;renotify&quot;: &quot;&lt;Boolean&gt;&quot;,
+  &quot;silent&quot;: &quot;&lt;Boolean&gt;&quot;,
+  &quot;//&quot;: &quot;Both Visual &amp; Behavioural Options&quot;,
+  &quot;actions&quot;: &quot;&lt;Array of Strings&gt;&quot;,
+  &quot;//&quot;: &quot;Information Option. No visual affect.&quot;,
+  &quot;timestamp&quot;: &quot;&lt;Long&gt;&quot;
+}
+</code></pre>
+
+<p>We should follow the above schema in order to create and manage our notifications, but since we are using NeDB we can save notifications with different schema or including only the fields we will use.
+Remember also that not all the options are supported by different platforms (chrome, firefox, etc.) so will keep our notification model as simple in order to get supported by different platforms.</p>
+
+<pre><code>{
+  title: title of the notification,
+  body: message body,
+  image: image URL to show (when supported),
+  icon: icon URL to show,
+  url: url to redirect when the user clicks on the notification received
+}
+</code></pre>
+
+<p><strong>image/icon url</strong> should be served thru CDN or other reliable services.</p>
+
+<p>In order to set a createdAt and updatedAt for each record we need to change something in our notifications model.</p>
+
+<p>Open <code>src/models/notifications.model.js</code> and add <code>timestampData: true</code> as shown below</p>
+
+<pre><code>  ....
+  const Model = new NeDB({
+    filename: path.join(dbPath, 'notifications.db'),
+    autoload: true,
+    timestampData: true //automatically add createdAt and updatedAt timestamp data fields
+  });
+  ...
+</code></pre>
+
+<h2 id="subscriptions-service">Subscriptions Service</h2>
+
+<p>endpoint: <code>http://localhost:3030/subscription</code></p>
+
+<p><strong>WebPush Notifications can send notifications only to subscribers thru a VAPID server.</strong></p>
+
+<p>In order to send our notification to subscribed users we need to collect and manage them. This means that we need to create, patch, update and delete subscriptions.
+We need to create a service. Press Ctrl+C in the console in order to stop your app and type</p>
+
+<pre><code>$ feathers generate service
+
+? What kind of service is it? (Use arrow keys)
+  A custom service
+  In Memory
+&gt; NeDB
+  MongoDB
+  Mongoose
+  Sequelize
+  KnexJS
+(Move up and down to reveal more choices)
+
+? What kind of service is it? NeDB
+? What is the name of the service? subscription
+? Which path should the service be registered on? (/subscription)
+? Does the service require authentication? (y/N) N
+</code></pre>
+
+<p>We will not require authentication since the user can unsuscribe any time without any authentication as an opt-out option.
+Our service to manage <strong>subscriptions</strong> is ready. Restart the server <code>nodemon src/index.js</code>.</p>
+
+<h5 id="how-to-create-subscriptions">How to create subscriptions?</h5>
+
+<p>Subscriptions can only be generated by the client side and they depends on service-workers. Process to create a subscription is:</p>
+
+<ol>
+<li>Register a Service Worker</li>
+<li>Request user Permission</li>
+<li>Subscribe a user using PushManager</li>
+</ol>
+
+<p>So in order to create, register or remove subscription we need to call the service from the browser.</p>
+
+<p>You can use REST API or websocket. Our service supports both.</p>
+
+<p>In order to register subscriptions in our database you have invoke a <code>POST</code> method to the service endpoint.</p>
+
+<p>Example of subscription script (client)</p>
+
+<pre><code>  ...
+  function subscribe(){
+
+    return navigator.serviceWorker.register('service-worker.js')
+      .then(function(registration) {
+        const subscribeOptions = {
+          userVisibleOnly: true,
+          applicationServerKey:
+          urlB64ToUint8Array(VAPID_PUBLIC_KEY) //your VAPID public key created before
+        };
+        return registration.pushManager.subscribe(subscribeOptions);
+      })
+      .then(function(pushSubscription) {
+        console.log('PushSubscription: ', JSON.stringify(pushSubscription));
+        //post to our subscriptions service
+        //http://localhost:3030/subscriptions
+        return pushSubscription;
+    })
+  }    
+  ...
+</code></pre>
+
+<p><strong>VAPID_PUBLIC_KEY</strong> is the key we generated before and identifies our Web Push Notification Server (ApplicationServerKey)</p>
+
+<p>Note the function <code>urlB64ToUint8Array</code> is a custom function used for conversion of a base64String to a Uint8Array that is required to manage subscriptions correctly.</p>
+
+<pre><code>function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i &lt; rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+},
+</code></pre>
+
+<p>The subscription generated by the browser is a JSON Object that will look something like this</p>
+
+<p>Mozilla</p>
+
+<pre><code>{
+  &quot;endpoint&quot;:&quot;https://updates.push.services.mozilla.com/wpush/v2/gAAAAABch......&quot;,
+  &quot;keys&quot;:
+    {
+      &quot;auth&quot;:&quot;.........&quot;,
+      &quot;p256dh&quot;:&quot;.......HgPik7lB2HxrsAhKgXrfFw-EE3hsNJD-84-PEm0gK0qnNuGVZT7vT........&quot;
+   }
+ }
+</code></pre>
+
+<p>Chrome</p>
+
+<pre><code>{
+  &quot;endpoint&quot;:&quot;https://fcm.googleapis.com/fcm/send/e7Vi4ajhcsA .......&quot;,
+  &quot;expirationTime&quot;:null,
+  &quot;keys&quot;:
+    {
+      &quot;p256dh&quot;:&quot;...........-CPsXi_e9NvnhaxpuMhn-OJ4MX6ojmckzVRts.......&quot;,
+      &quot;auth&quot;:&quot;....f6nMs30v76w....&quot;
+    },
+}
+</code></pre>
+
+<p>For a detail guide about the subscription generation please read <a href="https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user">here</a></p>
+
+<p>You will find also an article on this blog to create a Vue app in order to test our Web Push Notification Service.</p>
+
+<h2 id="push-service">Push Service</h2>
+
+<p>endpoint <code>http://localhost:3030/push</code></p>
+
+<pre><code>$ feathers generate service
+? What kind of service is it? (Use arrow keys)
+  A custom service
+  In Memory
+&gt; NeDB
+  MongoDB
+  Mongoose
+  Sequelize
+  KnexJS
+(Move up and down to reveal more choices)
+
+? What kind of service is it? NeDB
+? What is the name of the service? subscriptions
+? Which path should the service be registered on? (/push)
+? Does the service require authentication? (y/N) Y
+</code></pre>
+
+<p>This will create a standard feathersjs service with the following API</p>
+
+<pre><code>- find
+- get
+- create
+- update
+- patch
+- remove
+</code></pre>
+
+<p>We will use these standards API in order to register the notifications we generated and sent to subscribers (to analyze them)</p>
+
+<p>In order to use our API to send subscriptions we need to add a hook in order to:</p>
+
+<ul>
+<li>select which notification to send from our database</li>
+<li>send to subscribers</li>
+<li>save to db our web push action</li>
+</ul>
+
+<p>Open <code>src/services/push/push.hooks.js</code></p>
+
+<pre><code>const { authenticate } = require('@feathersjs/authentication').hooks;
+
+module.exports = {
+  before: {
+    all: [authenticate('jwt')],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
+  },
+
+  after: {
+    all: [],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
+  },
+
+  error: {
+    all: [],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
+  }
+};
+</code></pre>
+
+<p>After the first line add</p>
+
+<pre><code>const webpush = require('../../hooks/webpush');
+</code></pre>
+
+<p>Locate the section <code>after</code> and change as below</p>
+
+<pre><code>...
+after: {
+  all: [],
+  find: [],
+  get: [],
+  create: [webpush()],
+  update: [],
+  patch: [],
+  remove: []
+},
+...
+</code></pre>
+
+<p>What does it mean?</p>
+
+<ol>
+<li>import a webpush.js</li>
+<li>after a POST action or create action to our service call webpush hook that will send our notifications</li>
+</ol>
+
+<p>Now we need to code our webpush hook. Create a file in  <code>src/hooks/webpush.js</code></p>
+
+<p>We first import our web-push library that we installed before</p>
+
+<pre><code>const webpush = require('web-push')
+</code></pre>
+
+<p>Then we will create trigger function that will be fired on every notification to be sent. This is our main function in order to send our notifications</p>
+
+<pre><code>const triggerPushMsg = function(subscription, dataToSend) {
+  //send notification to subscriber
+  return webpush.sendNotification(subscription, dataToSend)
+  .then(response=&gt;{
+    //check everything ok only for test
+    console.log ( 'msg sent' , response )
+  })
+  .catch((err) =&gt; {
+    //add log features for production
+    console.log('Subscription is no longer valid: ', err);
+  });
+};
+</code></pre>
+
+<p>And then our hook. Remember that we will send a notification saved in our db so we need to <code>POST</code> a valid ID.</p>
+
+<pre><code>module.exports = function (options = {}) {
+  return async context =&gt; {
+    //get the notification by the notification parameter sent thru our POST
+    context.app.service('notifications').get(context.data.notification).then(result=&gt;{
+      return result
+    }).then(notification=&gt;{
+      //create the message to send based on our notification from DB
+      const dataToSend = {
+        &quot;notification&quot; : {
+          &quot;title&quot; : notification.title,
+          &quot;body&quot;  : notification.body,
+          &quot;image&quot;  : notification.image ? notification.image : context.app.settings.image ,
+          &quot;icon&quot;  : context.app.settings.logo,
+          &quot;data&quot; : notification.url ? { &quot;url&quot; : notification.url } : ''
+        }
+      }
+
+      //recall the vapid keys
+      const vapidKeys = {
+        subject: context.app.settings.vapid.subject,
+        publicKey: context.app.settings.vapid.public,
+        privateKey: context.app.settings.vapid.private
+      };
+
+      //set our vapid keys
+      webpush.setVapidDetails(
+        vapidKeys.subject,
+        vapidKeys.publicKey,
+        vapidKeys.privateKey
+      );
+
+      //find all subscribers in our DB
+      context.app.service('subscription').find().then(result=&gt;{
+        //create a promise
+        let promiseChain = Promise.resolve();
+        //loop thru our subscribers
+        for (let i = 0; i &lt; result.data.length; i++) {
+          const subscription = result.data[i];
+          promiseChain = promiseChain.then(() =&gt; {
+            //push our message
+            return triggerPushMsg(subscription, JSON.stringify(dataToSend));
+          });
+        }
+        return promiseChain;
+      })
+
+    })
+    return context;
+  };
+};
+</code></pre>
+
+<p>In order to send a notification we need :</p>
+
+<ol>
+<li>A notification saved in our DB</li>
+<li>At least a valid subscription saved in our DB</li>
+</ol>
+
+<p>When we will set both of above conditions we can start to send our notifications with a POST to <code>http://localhost:3030/push</code>
+with following data :</p>
+
+<pre><code>{
+  notification: '3kQ9LDv9NBQxKOR7' //_id of the notification to send
+}
+</code></pre>
+
+<p>Our app should be now ready to register subscriptions, save notifications and send web push notifications to subscribers.</p>
+
+<p>In order <strong>to test our app we need to</strong>:</p>
+
+<ol>
+<li><strong>add a user</strong> (admin)</li>
+<li><strong>authenticate the user</strong> in order to get the JWT-token to authorize to use our services that require authentication</li>
+<li><strong>add some notifications</strong> in order to test them</li>
+<li><strong>register at least one subscriber</strong> to our db</li>
+</ol>
+
+<p>We can use <strong>Postman</strong> for our testing (we can&rsquo;t register subscriptions since this process can be run only in a client browser)</p>
+
+<p>Before to start using Postman you need to start your server</p>
+
+<pre><code>$ nodemon src/index.js
+</code></pre>
+
+<p>Verify that everything is ok and you don&rsquo;t get any error from the console.</p>
+
+<h4 id="add-a-user">Add a user</h4>
+
+<p>In Postman set a POST action and input</p>
+
+<pre><code>POST http://localhost:3030/users
+</code></pre>
+
+<p>and the following data (you can use form-data)</p>
+
+<pre><code>  &quot;email&quot; : &quot;an email address like me@example.com or a username&quot;,
+  &quot;password&quot; : &quot;a password of you choice&quot;,
+  &quot;name&quot; : &quot;your name&quot;
+</code></pre>
+
+<p>Click on Send. You will get a response with the info you submitted. Remember that Feathersjs protect the password without exposing it by default. Password will never get exposed from any API calling to the users service.</p>
+
+<p><strong>IMPORTANT</strong>: email and password will be the keys used to authenticate users</p>
+
+<p><em>You can add different information for each user since we are using a schema less database</em></p>
+
+<p>You created your first user.</p>
+
+<h4 id="authentication">Authentication</h4>
+
+<pre><code>POST http://localhost:3030/authenticate
+</code></pre>
+
+<pre><code>email : email/user created before
+password: password
+strategy: 'local'
+</code></pre>
+
+<p>We are using a local strategy. In order to authenticate you need to tell feathersjs which strategy you are using for authentication.</p>
+
+<p>You will get as response a JWT-Token and Copy the value in the clipboard.</p>
+
+<pre><code>
+{
+    &quot;accessToken&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6ImFjY2VzcyJ9.eyJ1c2VySWQiOiJvcWkxbzhzOE93MFo1d0hFIiwiaWF0IjoxNTUyMTcxOTU1LCJleHAiOjE1NTIyNTgzNTUsImF1ZCI6Imh0dHBzOi8veW91cmRvbWFpbi5jb20iLCJpc3MiOiJmZWF0aGVycyIsInN1YiI6ImFub255.....&quot;
+}
+
+</code></pre>
+
+<p>In order to use the services that requires authentication you need too add in the Headers of Postman</p>
+
+<pre><code>Authorization : JWT-Token you got from the authentication
+</code></pre>
+
+<h4 id="check-users">Check users</h4>
+
+<pre><code>GET http://localhost:3030/users
+</code></pre>
+
+<h4 id="add-a-notification">Add a Notification</h4>
+
+<pre><code>POST http://localhost:3030/notifications
+</code></pre>
+
+<p>Keys/Values or Fields/Value (from Postman)</p>
+
+<pre><code>  &quot;title&quot; : &quot;First notification&quot;
+  &quot;body&quot; : &quot;My first notification&quot;,
+  &quot;image&quot; : image URL or '',
+  &quot;logo&quot; : icon URL or '',
+  &quot;url&quot; : URL to redirect on click or ''
+</code></pre>
+
+<p>All fields are strings.</p>
+
+<p>Click on Send. Our first notification has been created. You will get something like this</p>
+
+<pre><code>{
+  &quot;title&quot; : &quot;First notification&quot;
+  &quot;body&quot; : &quot;My first notification&quot;,
+  &quot;image&quot; : image URL or '',
+  &quot;logo&quot; : icon URL or '',
+  &quot;url&quot; : URL to redirect on click or ''
+  &quot;createdAt&quot;: &quot;2019-02-27T10:57:37.820Z&quot;,
+  &quot;updatedAt&quot;: &quot;2019-02-27T10:57:37.820Z&quot;
+}
+</code></pre>
+
+<p>In order to start sending notifications we need a client that submit a subscription to our service.</p>
+
+<h2 id="the-client-example">The Client Example</h2>
+
+<p>In order to test our Web Push Notification service create in an empty folder 2 files:</p>
+
+<ul>
+<li>service-worker.js</li>
+<li>index.html</li>
+</ul>
+
+<p>Above example must be served over HTTP so you need a web server like Chrome Web Server.</p>
+
+<p>service-worker.js</p>
+
+<pre><code>let click_open_url
+self.addEventListener('push', function(event) {
+  let push_message = event.data.json()
+  // push notification can send event.data.json() as well
+  click_open_url = push_message.notification.data.url
+  const options = {
+    body: push_message.notification.body,
+    icon: push_message.notification.icon,
+    image: push_message.notification.image,
+    tag: 'alert'
+  };
+  event.waitUntil(self.registration.showNotification(push_message.notification.title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  const clickedNotification = event.notification;
+  clickedNotification.close();
+  if ( click_open_url ){
+    const promiseChain = clients.openWindow(click_open_url);
+    event.waitUntil(promiseChain);
+  }
+});
+
+</code></pre>
+
+<p>Following is a simple single page subscription to our service that we will use to</p>
+
+<ul>
+<li>register our service worker</li>
+<li>ask permission for subscriptions</li>
+<li>create a subscription</li>
+<li>submit our subscription to the server</li>
+<li>check on load if user is subscribed</li>
+</ul>
+
+<p>Remember to add you <strong>VAPID PUBLIC KEY</strong> at the top of the script</p>
+
+<p>index.html</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+  &lt;meta name=&quot;author&quot; content=&quot;&quot;&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;//cdnjs.cloudflare.com/ajax/libs/core-js/2.1.4/core.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js&quot;&gt;&lt;/script&gt;
+  &lt;title&gt;Demo for WebPush Notification - Client&lt;/title&gt;
+  &lt;style&gt;
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .hide {
+    display:none;
+  }
+  button {
+    border:1px solid #eaeaea;
+    border-radius:5px;
+    padding:5px;
+    color:white;
+  }
+  #btnSubscribe {
+    background: green;
+  }
+  #btnUnsubscribe {
+    background: red;
+  }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div style=&quot;position:fixed;top:10px;right:5px;&quot;&gt;
+    &lt;span id=&quot;error&quot; style=&quot;background:#f2f2f2;padding:4px;border-radius:15px;&quot;&gt;&lt;/span&gt;
+
+  &lt;/div&gt;
+
+  &lt;div id=&quot;isSubscribed&quot; style=&quot;font-size:.8rem;&quot;&gt;&lt;/div&gt;
+
+  &lt;div style=&quot;margin:4rem auto;text-align:center;&quot;&gt;
+    &lt;h2&gt;Web Push Notifications Demo&lt;/h2&gt;
+    &lt;button onclick=&quot;subscribe()&quot; id=&quot;btnSubscribe&quot;&gt;Subscribe&lt;/button&gt;
+    &lt;button onclick=&quot;subscribe()&quot; id=&quot;btnUnsubscribe&quot; class=&quot;hide&quot;&gt;Unsubscribe&lt;/button&gt;
+  &lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+//-----------------   ADD YOUR VAPID PUBLIC KEY HERE --------//
+const appServerKey = '' //Your VAPID Public Key
+//-----------------------------------------------------------//
+// Socket.io is exposed as the `io` global.
+var socket = io('http://localhost:3030');
+// @feathersjs/client is exposed as the `feathers` global.
+var app = feathers();
+
+app.configure(feathers.socketio(socket));
+
+
+//register service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js')
+    permissionRequest()
+  });
+}
+
+
+function isSubscribed(){
+  navigator.serviceWorker.ready.then(function(reg) {
+    reg.pushManager.getSubscription().then(function(subscription) {
+      console.log(subscription)
+
+      app.service('subscription').find({
+        query: {
+          endpoint: subscription.endpoint
+        }
+      }).then(result=&gt;{
+        console.log ( 'issubscribed=&gt;' , result )
+        document.getElementById('isSubscribed').innerHTML = 'You need to susbscribe in order to receive notifications'
+        document.getElementById('btnSubscribe').className = ''
+        document.getElementById('btnUnsubscribe').className = 'hide'
+        if ( result.total ) {
+          document.getElementById('isSubscribed').innerHTML = 'You are subscribed!'
+          document.getElementById('btnSubscribe').className = 'hide'
+          document.getElementById('btnUnsubscribe').className = ''
+        }
+      }).catch(error=&gt;{
+        console.log ( error )
+      })
+    }).catch(error=&gt;{
+      console.log ( error )
+      //_self.mysubscription = error
+    })
+  }).catch(error=&gt;{
+    console.log ( error )
+    //_self.mysubscription = error
+  })
+}
+
+function permissionRequest(){
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+      resolve(result)
+    });
+
+    if (permissionResult) {
+      permissionResult.then(resolve, reject);
+    }
+  })
+  .then(function(permissionResult) {
+    if (permissionResult !== 'granted') {
+      throw new Error('We weren\'t granted permission.')
+    }
+  });
+}
+
+
+function urlB64ToUint8Array(base64String) {
+  console.log ( base64String )
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i &lt; rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+function subscribe(){
+  let self = this
+  return navigator.serviceWorker.register('service-worker.js')
+    .then(function(registration) {
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlB64ToUint8Array(appServerKey)
+      };
+      return registration.pushManager.subscribe(subscribeOptions);
+    }).then(function(pushSubscription) {
+      console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+      app.service('subscription').create(pushSubscription)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      return pushSubscription;
+    })
+}
+
+isSubscribed()
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<h2 id="send-your-first-notification">Send your first notification</h2>
+
+<p>After you have subscribed with the above example to back to Postman</p>
+
+<pre><code>GET http://localhost:3030/subscription
+</code></pre>
+
+<p>You should get you subscription posted by the browser.</p>
+
+<p>Now get a notification that we created before</p>
+
+<pre><code>GET http://localhost:3030/notifications
+</code></pre>
+
+<p>Copy the <code>_id</code> to the clipboard</p>
+
+<pre><code>POST http://localhost:3030/push
+
+  KEY           VALUE
+  notification  'dasd1233123331' //your notification _id
+
+</code></pre>
+
+<p><strong>You will receive your first Push Notification!!!</strong></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/feathersjs/">feathersjs</a>
+
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/nodejs/">nodejs</a>
+
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/webpush-notifications/">webpush notifications</a>
+
+  <a class="tag tag--primary tag--small" href="https://swina.github.io/tags/vapid/">vapid</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/" data-tooltip="Vue service worker for WebPush Notifications">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Antonio Nardone. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/" data-tooltip="Vue service worker for WebPush Notifications">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fwebpush-notifications-with-feathersjs%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fwebpush-notifications-with-feathersjs%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fswina.github.io%2F2019%2F02%2Fwebpush-notifications-with-feathersjs%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/38df364cc26ea11f579a464c070bb149?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Antonio Nardone</h4>
+    
+      <div id="about-card-bio">Web Specialist</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web Specialist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Italy
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://swina.github.io/2019/02/webpush-notifications-with-feathersjs/">
+                <h3 class="media-heading">WebPush Notifications with Feathersjs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Create your own VAPID Web Push Notifications server.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://swina.github.io/2019/02/vue-service-worker-for-webpush-notifications/">
+                <h3 class="media-heading">Vue service worker for WebPush Notifications</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!--thumbnailImagePosition: left
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
+-->
+
+<p>Building a Vue PWA with Web Push Notifications enabled</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://swina.github.io/2019/02/how-to-create-a-simple-reusable-vue-input-text-component/">
+                <h3 class="media-heading">How to create a simple reusable Vue Input Text component</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><!--thumbnailImagePosition: left
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
+-->
+
+<p>Crate your configurable Vue component for Input Text</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         3 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://swina.github.io/images/background.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://swina.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
